@@ -1,0 +1,25 @@
+[tool.black]
+skip-string-normalization=true
+skip-magic-trailing-comma=false
+line-length=89
+
+[tool.flake8]
+ignore=['WPS100', 'W503', 'D100', 'D101', 'D102', 'D103', 'D104', 'D105', 'D106']
+per-file-ignores = [
+    'settings.py:WPS407,WPS226',
+    'urls.py:F401,WPS433',
+]
+exclude=['.git', 'env/', 'venv/', 'temp/', '*.md', '__pycache__/', 'manage.py']
+max-cognitive-complexity=10
+max-line-length=89
+class_attributes_order=['field', 'meta_class', 'nested_class', 'magic_method', 'property_method', 'static_method', 'class_method', 'method', 'private_method']
+
+[tool.isort]
+profile='black'
+
+[tool.mypy]
+exclude=['venv/']
+ignore_missing_imports=true
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "lab_project.settings"
