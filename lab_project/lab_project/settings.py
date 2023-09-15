@@ -99,3 +99,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# db models related constants
+TEST_SCORE_PRECISION_MAX_DIGITS = 20
+
+TEST_SCORE_PRECISION_DECIMAL_PLACES = 20

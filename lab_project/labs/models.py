@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 # isort: split
@@ -58,7 +59,9 @@ class Score(CommonModelMixin):
         verbose_name='test_id',
         help_text='Test id',
     )
-    score = models.IntegerField(
+    score = models.DecimalField(
+        max_digits=settings.TEST_SCORE_PRECISION_MAX_DIGITS,
+        decimal_places=settings.TEST_SCORE_PRECISION_DECIMAL_PLACES,
         verbose_name='score',
         help_text='Score',
     )
