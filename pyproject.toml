@@ -9,6 +9,7 @@ per-file-ignores = [
     'settings.py:WPS407',
     'urls.py:F401,WPS433',
     'models.py: WPS306',
+    'filters.py: WPS306',
     'serializers.py: WPS110,WPS615,WPS306',
     'test_*.py:S101',
     'conftest.py:WPS442',
