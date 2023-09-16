@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_yasg',
     'core.apps.CoreConfig',
     'indicators.apps.IndicatorsConfig',
@@ -103,35 +104,38 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
+LOGGING_ENABLED = os.environ.get('LOGGING_ENABLED', 'False')
+
+if LOGGING_ENABLED:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
         },
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
+        'loggers': {
+            'django.db.backends': {
+                'level': 'DEBUG',
+                'handlers': ['console'],
+            },
         },
-    },
-}
+    }
 
-# db models related constants
-TEST_SCORE_PRECISION_MAX_DIGITS = 20
-
-TEST_SCORE_PRECISION_DECIMAL_PLACES = 10
-
-# DRF settings
-REST_FRAMEWORK_SETTINGS = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100,
 }
 
 SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
     'SECURITY_DEFINITIONS': {
         'Token': {
             'type': 'apiKey',
@@ -140,3 +144,8 @@ SWAGGER_SETTINGS = {
         },
     },
 }
+
+# db models related constants
+TEST_SCORE_PRECISION_MAX_DIGITS = 20
+
+TEST_SCORE_PRECISION_DECIMAL_PLACES = 10

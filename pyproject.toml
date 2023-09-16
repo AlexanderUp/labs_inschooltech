@@ -10,6 +10,8 @@ per-file-ignores = [
     'urls.py:F401,WPS433',
     'models.py: WPS306',
     'serializers.py: WPS110,WPS615,WPS306',
+    'test_*.py:S101',
+    'conftest.py:WPS442',
 ]
 exclude=['lab_project/indicators/migrations/*.py', 'lab_project/labs/migrations/*.py', 'manage.py']
 max-cognitive-complexity=10
