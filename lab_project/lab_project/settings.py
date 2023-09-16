@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'rest_framework',
+    'drf_yasg',
     'core.apps.CoreConfig',
     'indicators.apps.IndicatorsConfig',
     'labs.apps.LabsConfig',
@@ -128,4 +129,14 @@ REST_FRAMEWORK_SETTINGS = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+}
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        },
+    },
 }
