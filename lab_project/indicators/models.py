@@ -80,13 +80,13 @@ class Reference(CommonModelMixin):
         verbose_name='indicator_metric_id',
         help_text='IndicatorMetric id',
     )
-    score = models.DecimalField(
+    min_score = models.DecimalField(
         max_digits=settings.TEST_SCORE_PRECISION_MAX_DIGITS,
         decimal_places=settings.TEST_SCORE_PRECISION_DECIMAL_PLACES,
         verbose_name='min_score',
         help_text='Min score',
     )
-    score = models.DecimalField(
+    max_score = models.DecimalField(
         max_digits=settings.TEST_SCORE_PRECISION_MAX_DIGITS,
         decimal_places=settings.TEST_SCORE_PRECISION_DECIMAL_PLACES,
         verbose_name='max_score',
