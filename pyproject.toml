@@ -32,7 +32,7 @@ DJANGO_SETTINGS_MODULE = "lab_project.settings"
 filterwarnings = [
     'ignore::DeprecationWarning'
 ]
-python_paths = '.'
+python_paths = '../lab_project'
 norecursedirs = ['venv/*']
 addopts = '-vv -p no:cacheprovider'
 testpaths = ['tests/']
