@@ -16,4 +16,4 @@ COPY lab_project/ /app/lab_project
 
 WORKDIR /app/lab_project
 
-CMD ["python3", "manage.py", "runserver", "0:8000"]
+CMD ["gunicorn", "lab_project.wsgi:application", "--bind", "0:8000"]
