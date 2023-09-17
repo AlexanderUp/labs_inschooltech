@@ -1,4 +1,7 @@
+from django.conf import settings
 from django.db.models import OuterRef, Prefetch, Subquery
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
@@ -8,6 +11,10 @@ from indicators.models import Reference
 from labs.models import Score, Test
 
 
+@method_decorator(
+    cache_page(settings.API_RESPONSE_CACHE_DURATION_SECONDS),
+    name='dispatch',
+)
 class TestViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TestSerializer
     filter_backends = (DjangoFilterBackend,)

@@ -7,7 +7,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'super_secret_key_your_never_guess')
 
 DEBUG = os.getenv('DEBUG')
 
@@ -151,7 +151,16 @@ SWAGGER_SETTINGS = {
     },
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    },
+}
+
 # db models related constants
 TEST_SCORE_PRECISION_MAX_DIGITS = 20
 
 TEST_SCORE_PRECISION_DECIMAL_PLACES = 10
+
+API_RESPONSE_CACHE_DURATION_SECONDS = 60
