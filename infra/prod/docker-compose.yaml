@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+
+  postgres:
+    image: postgres:15.3-alpine
+    restart: always
+    volumes:
+      - labs_postgres_volume:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  web:
+    build: ../../
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - ../../lab_project/lab_project/.env
+    ports:
+      - "8000:8000"
+
+volumes:
+  labs_postgres_volume:
