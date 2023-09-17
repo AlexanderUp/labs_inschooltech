@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import models
 
-# isort: split
 from core.models import CommonModelMixin
 from indicators.models import IndicatorMetric
 
@@ -10,6 +9,7 @@ class Lab(CommonModelMixin):
     name = models.TextField(
         verbose_name='name',
         help_text="Lab's name",
+        unique=True,
     )
 
     class Meta:

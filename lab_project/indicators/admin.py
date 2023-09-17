@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-# isort: split
 from indicators.models import Indicator, IndicatorMetric, Metric, Reference
 
 

@@ -1,15 +1,17 @@
 from django.db.models import OuterRef, Prefetch, Subquery
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
-# isort: split
+from api.filters import TestFilter
 from api.serializers import TestSerializer
 from indicators.models import Reference
-
 from labs.models import Score, Test
 
 
 class TestViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TestSerializer
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = TestFilter
 
     def get_queryset(self):
         scores_queryset = (
