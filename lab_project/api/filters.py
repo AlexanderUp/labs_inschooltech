@@ -1,6 +1,5 @@
 from django_filters import rest_framework as filters
 
-# isort: split
 from labs.models import Test
 
 

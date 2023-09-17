@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-# isort: split
 from labs.models import Score, Test
 
 
