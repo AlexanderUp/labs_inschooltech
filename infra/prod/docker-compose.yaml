@@ -29,8 +29,6 @@ services:
       - ../../lab_project/lab_project/.env
     volumes:
       - labs_static_volume:/app/lab_project/static/
-    # ports:
-    #   - "8000:8000"
 
   nginx:
     image: nginx:1.21.3-alpine

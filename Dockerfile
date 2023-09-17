@@ -14,6 +14,10 @@ RUN pip3 install -r /app/requirements/prod.txt --no-cache-dir
 
 COPY lab_project/ /app/lab_project
 
+COPY entrypoint.sh /app/lab_project/entrypoint.sh
+
 WORKDIR /app/lab_project
 
-CMD ["gunicorn", "lab_project.wsgi:application", "--bind", "0:8000"]
+RUN  chmod +x ./entrypoint.sh
+
+ENTRYPOINT  ["./entrypoint.sh"]
