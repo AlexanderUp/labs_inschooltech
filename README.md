@@ -2,6 +2,23 @@
 
 ## Features
 
+- Entity creation with django admin site (labs, tests, indicators, metrics, scores, etc.);
+
+- Test filtration against lab_id;
+
+- LocMem django sub-system used;
+
+- Token authorization;
+
+- Swagger documentation;
+
+- PostgreSQL DB used;
+
+- Docker compose for developing and production deployment;
+
+- CI/CD (GitHub based, linters (flake8, mypy), tests);
+
+- Pytest for testing.
 
 ## How to run server locally
 
@@ -54,6 +71,8 @@
 
 ```python3 manage.py runserver```
 
+- Server is running at ```http://127.0.0.1:8000```
+
 - API description is available with Swagger or Redoc at
 
 ```http://127.0.0.1:8000/swagger/```
@@ -89,6 +108,8 @@
 
 ```docker-compose exec web python3 manage.py createsuperuser```
 
+- Server is running at ```http://127.0.0.1```
+
 - API description is available with Swagger or Redoc at
 
 ```http://127.0.0.1/swagger/```
@@ -102,3 +123,27 @@
 - Stop and remove container and data volume:
 
 ```docker-compose down -v```
+
+
+### Authentication
+
+Token based authentication used.
+
+Example:
+
+Header 'AUTORIZATION': 'Token Token 9e96a48287b05c4270386ebd69216a246b3d27f9'.
+
+Token obtaining available at
+
+```http://127.0.0.1/api-token-auth/``` (production)
+
+```http://127.0.0.1:8000/api-token-auth/``` (development)
+
+with POST
+
+```json
+{
+    "username": "john_doe",
+    "password": "super_secret_password"
+}
+```
