@@ -32,6 +32,8 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.11"]
+    env:
+      DJANGO_SECRET_KEY: super_secret_key
 
     services:
 
